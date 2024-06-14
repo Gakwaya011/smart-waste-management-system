@@ -45,3 +45,11 @@ input, button, select{
     color: rgb(190, 58, 58);
     font-size: 12px;
 }
+
+header{
+    overflow: hidden !important;
+}
+
+header img{
+    max-width: 100% !important;
+}
