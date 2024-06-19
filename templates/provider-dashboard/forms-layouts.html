@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Manage Appointment | GreenLoop</title>
+</head>
+
+<body>
+
+  {% include 'common/navbar.html' %}
+  {% include 'provider-dashboard/sidebar.html' %}
+
+  <main id="main" class="main">
+
+    <div class="pagetitle">
+      <h1>Manage An Appointment</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+          <li class="breadcrumb-item active">Manage</li>
+        </ol>
+      </nav>
+    </div><!-- End Page Title -->
+    <section class="section">
+      <div class="row">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Manage An Appointment</h5>
+
+              {% if error %}
+              <div class="alert alert-danger" role="alert">
+                {{ error }}
+              </div>
+              {% endif %}
+
+              <!-- Multi Columns Form -->
+              <form class="row g-3" method="POST" action="{{ url_for('management') }}">
+                <div class="col-md-12">
+                  <label for="inputName5" class="form-label">Full Name</label>
+                  <input type="text" name="username" class="form-control" id="inputName5" readonly value="{{booking.username}}">
+                </div>
+                <div class="col-md-12">
+                  <label for="inputEmail5" class="form-label">Email</label>
+                  <input type="email" name="email" class="form-control" id="inputEmail5" readonly value="{{booking.email}}"">
+                </div>
+                <div class="col-12">
+                  <label for="inputAddress5" class="form-label">Address</label>
+                  <input type="text" name="address" class="form-control" id="inputAddres5s" placeholder="1234 Main St" readonly value="{{booking.adress}}"">
+                </div>
+                <div class="col-12">
+                  <label for="inputAddress2" class="form-label">Date</label>
+                  <input type="date" required name="date" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor" readonly value="{{booking.date}}">
+                </div>
+                <div class="col-md-6">
+                  <label for="inputCity" class="form-label">Revenue</label>
+                  <input type="number" name="revenue" class="form-control" id="inputCity" required>
+                </div>
+                <div class="col-md-6">
+                  <label for="inputState" class="form-label">Status</label>
+                  <select id="inputState" name="status" class="form-select">
+                    <option selected>Choose...</option>
+                    <option>Done</option>
+                    <option>Cancelled</option>
+                  </select>
+                </div>
+                <div class="text-center">
+                  <button type="submit" class=" ps-4 pe-4 btn btn-success">Submit</button>
+                </div>
+              </form><!-- End Multi Columns Form -->
+
+            </div>
+          </div>
+    </section>
+
+  </main><!-- End #main -->
+
+  
+  <!-- ======= Footer ======= -->
+  <footer id="footer" class="footer">
+    <div class="copyright">
+      &copy; Copyright <strong><span>GreenLoop</span></strong>. All Rights Reserved
+    </div>
+    <div class="credits">
+      Designed by <a href="https://bootstrapmade.com/">NoNe</a>
+    </div>
+  </footer><!-- End Footer -->
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+
+
+  <!-- Vendor JS Files -->
+  <script src="{{url_for('static', filename='admin/vendor/apexcharts/apexcharts.min.js')}}"></script>
+  <script src="{{url_for('static', filename='admin/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+  <script src="{{url_for('static', filename='admin/vendor/chart.js/chart.min.js')}}"></script>
+  <script src="{{url_for('static', filename='admin/vendor/echarts/echarts.min.js')}}"></script>
+  <script src="{{url_for('static', filename='admin/vendor/quill/quill.min.js')}}"></script>
+  <script src="{{url_for('static', filename='admin/vendor/simple-datatables/simple-datatables.js')}}"></script>
+  <script src="{{url_for('static', filename='admin/vendor/tinymce/tinymce.min.js')}}"></script>
+  
+  <!-- Template Main JS File -->
+  <script src="{{url_for('static', filename='/js/dashboard.js')}}"></script>
+
+</body>
+
+</html>

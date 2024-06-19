@@ -1,0 +1,55 @@
+
+
+body{
+    background: #3aa556;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center
+}
+
+
+.card-header,  button, span {
+    background: #248a3f !important;
+    color : white !important;
+}
+    
+span {
+    border-radius: 5px 0 0 5px !important;
+    background: #248a3f !important;
+    color : white !important;
+    border: none !important;
+    padding: 5px;
+}
+
+.card{
+    border: none;
+}
+
+input, button, select{
+    border-radius: 0 5px 5px 0 !important;
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+.input-error{
+    border: 1px solid rgb(190, 58, 58) !important;
+}
+
+.card-footer a, .forgot{
+    color: #248a3f !important;
+    text-decoration: none !important;
+}
+
+.Eerror, .Perror, .Uerror, .CPerror, .Oerror, .Ferror{
+    color: rgb(190, 58, 58);
+    font-size: 12px;
+}
+
+header{
+    overflow: hidden !important;
+}
+
+header img{
+    max-width: 100% !important;
+}

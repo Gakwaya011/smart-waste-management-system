@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Users | GreenLoop</title>
+</head>
+
+{% include 'common/navbar.html' %}
+{% include 'admin-dashboard/sidebar.html' %}
+
+
+<body>
+
+
+  <main id="main" class="main">
+
+    <div class="pagetitle">
+      <h1>Users</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="#">Home</a></li>
+          <li class="breadcrumb-item active">Users</li>
+        </ol>
+      </nav>
+    </div><!-- End Page Title -->
+
+    <section class="section">
+      <div class="row">
+        <div class="col-lg-12">
+
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Users</h5>
+
+              {% if error %}
+                  <p style="color:red;">{{ error }}</p>
+              {% else %}
+
+              {% if bookings %}
+
+              <!-- Table with stripped rows -->
+              <table class="table datatable">
+                <thead>
+                  <tr>
+                    <th>
+                      <b>N</b>ame
+                    </th>
+                    <th>Email</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for booking in bookings %}
+                  <tr>
+                    <td>{{booking.username}}</td>
+                    <td>{{booking.email}}</td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+              <!-- End Table with stripped rows -->
+
+              {% else %}
+                <p class="text-center text-muted py-5">No Appointments For Your Company</p>
+
+              {% endif %}
+              {% endif %}
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer" class="footer">
+    <div class="copyright">
+      &copy; Copyright <strong><span>GreenLoop</span></strong>. All Rights Reserved
+    </div>
+    <div class="credits">
+      Designed by <a href="https://bootstrapmade.com/">NoNe</a>
+    </div>
+  </footer><!-- End Footer -->
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+
+  <!-- Vendor JS Files -->
+  <script src="{{url_for('static', filename='admin/vendor/apexcharts/apexcharts.min.js')}}"></script>
+  <script src="{{url_for('static', filename='admin/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+  <script src="{{url_for('static', filename='admin/vendor/chart.js/chart.min.js')}}"></script>
+  <script src="{{url_for('static', filename='admin/vendor/echarts/echarts.min.js')}}"></script>
+  <script src="{{url_for('static', filename='admin/vendor/quill/quill.min.js')}}"></script>
+  <script src="{{url_for('static', filename='admin/vendor/simple-datatables/simple-datatables.js')}}"></script>
+  <script src="{{url_for('static', filename='admin/vendor/tinymce/tinymce.min.js')}}"></script>
+  
+  <!-- Template Main JS File -->
+  <script src="{{url_for('static', filename='/js/dashboard.js')}}"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GreenLoop - Login</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="{{url_for('static', filename='css/sign-style.css')}}">
+  <link rel="icon" href="{{url_for('static', filename='img/logo-transparent.png')}}">
+</head>
+<body>
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-5">
+        <div class="card">
+          <div class="card-header text-center">
+            <h3>Login</h3>
+          </div>
+          <header>
+            <img src="{{url_for('static', filename='img/logo.jpeg')}}" alt="GreenLoop" class="logo">
+          </header>
+          <div class="card-body">
+            <p class="Ferror">{% if error %}{{ error }}{% endif %}</p>
+            <form id="loginForm" action="{{url_for('login')}}" method="POST">
+              <div class="input-group flex-nowrap">
+                <span class="input-group-text p-3" id="basic-addon1">
+                  <i class="fa fa-user"></i>
+                </span>
+                <input id="username" name="username" type="text" class="form-control p-4 " placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+              </div>
+              <p class="Uerror mb-3 ml-5"></p>
+              <div class="input-group mb-3 flex-nowrap">
+                <span class="input-group-text p-3" id="basic-addon1">
+                  <i class="fa fa-lock"></i>
+                </span>
+                <input type="password" name="password" id="password" class="form-control p-4" placeholder="Password" aria-label="Username" aria-describedby="basic-addon1">
+              </div>
+              <p class="Perror mb-3 ml-5"></p>
+              <a href="#" class="float-right forgot">Forgot Password?</a>
+              <div class="form-group mt-5">
+                <label for="users" class="form-label text-secondary">Login as:</label>
+                <select name="option" id="users" class="form-control">
+                  <option></option>
+                  <option>Household User</option>
+                  <option>Waste Collection Services</option>
+                  <option>Admin</option>
+                </select>
+              </div>
+              <p class="Oerror ml-1"></p>
+              <button type="submit" class="btn btn-block">Login</button>
+            </form>
+          </div>
+          <div class="card-footer text-center">
+            <a href="{{url_for('register')}}" class="register">Don't have an account? Register</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script>
+
+    let username = document.querySelector("#username");
+    let password = document.querySelector("#password");
+    let Usererror = document.querySelector(".Uerror");
+    let Pwderror = document.querySelector(".Perror");
+    let Oerror = document.querySelector(".Oerror");
+    let form = document.querySelector("form");
+    let option = document.querySelector("#users");
+    
+    
+    // this checks if you didn't submit an empty field
+    form.addEventListener("submit", (e) => {
+        e.preventDefault();
+
+        if(username.value == ""){
+          username.classList.add("input-error");
+          Usererror.innerHTML = "Username can't be empty"
+          username.focus();
+        }else if (password.value == ""){
+            password.classList.add("input-error");
+            Pwderror.innerHTML = "Password can't be empty"
+            password.focus();
+        }else if (option.value == ""){
+            option.classList.add("input-error");
+            Oerror.innerHTML = "Please select an option"
+            option.focus();
+        }
+        else{
+            form.submit();
+        }
+    })
+
+    
+    // this will help to change back borders to white when the user types some shit
+    username.addEventListener("keyup", (event) => {
+        if (username.value != ""){
+            if (event.key !== "Enter"){
+                username.classList.remove("input-error");
+                Usererror.innerHTML = ""
+            }
+        }
+    })
+    
+    password.addEventListener("keyup", () => {
+        if (password.value != ""){
+            if (event.key !== "Enter"){
+                password.classList.remove("input-error");
+                Pwderror.innerHTML = ""
+            }
+
+        }
+    })
+    
+    option.addEventListener("change", () => {
+        if (option.value != ""){
+            if (event.key !== "Enter"){
+                option.classList.remove("input-error");
+                Oerror.innerHTML = ""
+            }
+        }
+    })
+
+  </script>
+</body>
+</html>
