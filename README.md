@@ -11,15 +11,15 @@ The Smart Waste Management System is an innovative web application developed to 
 1. **Household Users**
    - Register and log in to the system.
    - Schedule waste collection and receive notifications.
-   - Track recycling efforts and view environmental impact metrics.
+   - Track recycling efforts.
 
 2. **Waste Collection Services**
    - Manage collection routes and schedules.
-   - Track performance and optimize routes.
+   - Track performance.
 
 3. **Administrators**
    - Monitor overall system performance.
-   - Manage users and system settings via an admin dashboard.
+   - Manage users and and Waste collectors via an admin dashboard.
 
 ### Features and Functionalities
 
@@ -33,7 +33,6 @@ The Smart Waste Management System is an innovative web application developed to 
 
 3. **Recycling Tracker**
    - Users can track their recycling efforts.
-   - The system provides metrics on the user's environmental impact.
 
 4. **Waste Collection Services Management**
    - Waste collection services can manage and optimize their collection routes.
@@ -54,14 +53,8 @@ The Smart Waste Management System is an innovative web application developed to 
 ### Backend Development
 
 - **Flask**: Used as the primary web framework.
-- **SQLAlchemy**: ORM used for database interactions.
-- **PostgreSQL/MySQL**: Database management system.
+- **MySQL**: Database management system.
 - **RESTful API**: Backend API endpoints for frontend and backend communication.
-
-### Data Structures and Algorithms
-
-- **Data Structures**: Arrays, linked lists, trees, and graphs are used to manage various aspects of the application.
-- **Algorithms**: Scheduling, route optimization, and data analytics algorithms enhance system efficiency.
 
 ### Testing
 
@@ -72,44 +65,5 @@ The Smart Waste Management System is an innovative web application developed to 
 
 - **CI/CD Pipeline**: Implemented using GitHub Actions to automatically run tests and deploy the application.
 - **Docker**: Used for containerization and deployment of the application on services like Heroku or AWS.
-
-## System Components
-
-### HTML Files
-
-- **index.html**: Homepage of the application.
-- **login.html**: User login page.
-- **register.html**: User registration page.
-- **schedule.html**: Page for scheduling waste collection.
-- **recycling_tracker.html**: Page for tracking recycling efforts.
-- **admin_dashboard.html**: Admin dashboard for managing the system.
-
-### CSS Files
-
-- **styles.css**: Custom styles for the application.
-- **bootstrap.min.css**: Bootstrap framework for responsive design.
-
-### JavaScript Files
-
-- **scripts.js**: Custom JavaScript for application interactivity.
-- **bootstrap.min.js**: Bootstrap JavaScript framework.
-
-### Flask Components
-
-- **app.py**: Main application file containing Flask routes and configurations.
-- **models.py**: Database models defined using SQLAlchemy.
-- **forms.py**: Form classes for user input handling.
-- **routes.py**: Defines the application routes and their corresponding functions.
-- **config.py**: Configuration file for the Flask application.
-
-### Database
-
-- **PostgreSQL/MySQL**: Used to store user data, waste collection schedules, recycling efforts, and other application data.
-
-### Additional Tools
-
-- **Fabric**: Used for deployment and management tasks.
-- **Flask-Login**: Manages user sessions and authentication.
-- **GitHub Actions**: Automates testing and deployment through a CI/CD pipeline.
 
 This Smart Waste Management System provides an integrated solution for efficient waste management, ensuring that users can easily schedule waste collection, track recycling efforts, and manage overall waste management processes effectively.
