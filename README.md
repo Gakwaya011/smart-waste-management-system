@@ -59,7 +59,7 @@ The Smart Waste Management System is an innovative web application developed to 
 ### Testing
 
 - **Unit Tests**: Written using the Unittest module to ensure critical parts of the application function correctly.
-- **Code Coverage**: Ensures high reliability and performance of the application.
+- **Code Coverage**: Ensures the application's high reliability and performance.
 
 ### Continuous Integration and Deployment
 
