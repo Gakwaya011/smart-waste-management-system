@@ -19,7 +19,7 @@ The Smart Waste Management System is an innovative web application developed to 
 
 3. **Administrators**
    - Monitor overall system performance.
-   - Manage users and and Waste collectors via an admin dashboard.
+   - Manage users  and Waste collectors via an admin dashboard.
 
 ### Features and Functionalities
 
