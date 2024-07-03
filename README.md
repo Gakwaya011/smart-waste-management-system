@@ -66,6 +66,5 @@ The Smart Waste Management System is an innovative web application developed to 
 ### Continuous Integration and Deployment
 
 - **CI/CD Pipeline**: Implemented using GitHub Actions to automatically run tests and deploy the application.
-- **Docker**: Used for containerization and deployment of the application on services like Heroku or AWS.
 
 This Smart Waste Management System provides an integrated solution for efficient waste management, ensuring that users can easily schedule waste collection, track recycling efforts, and manage overall waste management processes effectively.
