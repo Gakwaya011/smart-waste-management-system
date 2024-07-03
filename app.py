@@ -9,7 +9,7 @@ api = Api(app)
 app.secret_key = 'insideJoke'  # Replace with a strong secret key
 
 # Database connection setup
-conn = pymysql.connect(user='none', password='i want in', db='greenloop', charset='utf8mb4', cursorclass=pymysql.cursors.DictCursor)
+conn = pymysql.connect(host='localhost', user='none', password='i want in', db='greenloop', charset='utf8mb4', cursorclass=pymysql.cursors.DictCursor)
 
 # Parsers for request arguments
 login_parser = reqparse.RequestParser()
