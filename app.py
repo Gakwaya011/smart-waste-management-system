@@ -9,7 +9,7 @@ api = Api(app)
 app.secret_key = 'insideJoke'  # Replace with a strong secret key
 
 # Database connection setup
-conn = pymysql.connect(host='localhost', user='none', password='i want in', db='greenloop', charset='utf8mb4', cursorclass=pymysql.cursors.DictCursor)
+conn = pymysql.connect(host='sql12.freesqldatabase.com', user='sql12717723', password='2wRFUq3YKZ', db='sql12717723', charset='utf8mb4', cursorclass=pymysql.cursors.DictCursor)
 
 # Parsers for request arguments
 login_parser = reqparse.RequestParser()
@@ -33,7 +33,7 @@ class LoginAPI(Resource):
         
         # Change the options to their correspondence
         if opt == 'Admin':
-            opt = 'Admin'
+            opt = 'admin'
         elif opt == 'Household User':
             opt = 'User'
         elif opt == 'Waste Collection Services':
@@ -215,10 +215,14 @@ def user():
 
     try:
         cursor = conn.cursor()
-        cursor.execute("SELECT COUNT(DISTINCT company) AS total_providers FROM bookings")
+        cursor.execute("SELECT COUNT(DISTINCT username) AS total_providers FROM users WHERE `option` = 'Provider'")
         result = cursor.fetchone()
         cursor.close()
-        total_providers = result['total_providers']
+
+        if result is None:
+            total_providers = 0
+        else:
+            total_providers = result['total_providers']
 
         cursor = conn.cursor()
         cursor.execute("SELECT * FROM bookings WHERE revenue IS NOT NULL")
@@ -229,7 +233,7 @@ def user():
     except pymysql.MySQLError as e:
         print(f"Error: {e}")
         error = "An error occurred while retrieving bookings. Please try again later."
-        return render_template('bookings.html', error=error)
+        return render_template('user-dashboard/index.html', error=error)
 
 @app.route('/provider')
 def provider():
@@ -275,14 +279,48 @@ def faq():
 def contact():
     return render_template('common/pages-contact.html', role=session.get('role'))
 
-@app.route('/profile')
+@app.route('/profile', methods=['POST', 'GET'])
 def profile():
-    if 'username' not in session:
-        return redirect('/login')
-    username = session['username']
-    return render_template('common/users-profile.html', username=username, role=session.get('role'))
+    if request.method == 'POST':
+        username = request.form.get('username')
+        email = request.form.get('email')
 
+        try:
+            sql = "UPDATE users SET username = %s, email = %s WHERE username = %s"
+            cursor = conn.cursor()
+            cursor.execute(sql, (username, email, session['username']))
+            conn.commit()
+            cursor.close()
+            # Update session username if it changes
+            session['username'] = username
+            return redirect('/profile')
+        except pymysql.MySQLError as e:
+            print(f"Error: {e}")
+            error = "An error occurred while updating user data. Please try again later."
+            return render_template('common/users-profile.html', error=error)
 
+    else:
+        if 'username' not in session:
+            return redirect('/login')
+        username = session['username']
+
+        try:
+            cursor = conn.cursor()
+            cursor.execute("SELECT * FROM users WHERE username = %s", (username,))
+            user = cursor.fetchone()
+            cursor.close()
+            if user:
+                return render_template('common/users-profile.html', email=user['email'], username=username, role=session.get('role'))
+            else:
+                error = "User not found."
+                return render_template('common/users-profile.html', error=error)
+        except pymysql.MySQLError as e:
+            print(f"Error: {e}")
+            error = "An error occurred while retrieving user data. Please try again later."
+            return render_template('common/users-profile.html', error=error)
+
+    # Default return for unexpected paths
+    return render_template('common/users-profile.html')
 @app.route('/book', methods=['POST', 'GET'])
 def book():
     if 'username' not in session:
@@ -313,7 +351,7 @@ def book():
             cursor.execute("SELECT * FROM users where `option` = 'Provider'")
             users = cursor.fetchall()
             cursor.close()
-            return render_template('user-dashboard/forms-layouts.html', users=users)
+            return render_template('user-dashboard/forms-layouts.html', users=users, username=username)
 
         except pymysql.MySQLError as e:
             print(f"Error: {e}")
@@ -368,8 +406,8 @@ def management():
         status = request.form.get('status')
         username = request.form.get('username')
 
-        if status != "Done" or status != "Cancelled":
-            return "Invalid status choice. Please try again.", 5000
+        if status != "Done" and status != "Cancelled":
+            return status, 5000
 
         try:
             cursor = conn.cursor()
